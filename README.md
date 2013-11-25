@@ -5,7 +5,7 @@ LESS Wordpress Plugin
 ---------------------
 
 Implementation of LESS (Leaner CSS) in order to make themes development easier. This code is a fork of 
-[WP LESS](http://wordpress.org/plugins/wp-less/). The the documentation of the original plugin for now.
+[WP LESS](http://wordpress.org/plugins/wp-less/). Use the documentation of the original plugin for now.
 
 This code replaced LESSPHP 0.4.0 with [less.php](https://github.com/oyejorge/less.php).
 
