@@ -1,40 +1,9 @@
 <?php
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Environment.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Combinator.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Comment.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Quoted.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Import.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Ruleset.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Color.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Expression.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Dimension.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Unit.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Call.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Value.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Rule.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Variable.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Keyword.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Operation.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Element.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Selector.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Anonymous.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Mixin/Definition.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Mixin/Call.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Url.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Paren.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Media.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Attribute.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Condition.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Directive.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/Negative.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Node/UnitConversions.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Colors.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Visitor/visitor.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Visitor/extend-visitor.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Visitor/process-extends-visitor.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Visitor/join-selector-visitor.php';
-require dirname(__FILE__).'/vendor/less.php-master/lib/Less/Parser.php';
-
+if(!class_exists('Less_Parser'))
+{
+require dirname(__FILE__).'/vendor/phpless/Less.php';
+//require dirname(__FILE__).'/vendor/phpless/LessCache.php';
+}
 /**
  * LESS compiler
  *
@@ -103,8 +72,8 @@ class WPLessCompiler extends Less_Parser
 	 */
 	public function cacheStylesheet(WPLessStylesheet $stylesheet, $force = false)
 	{
-		 $upload_dir = wp_upload_dir(); 
-		$to_cache = array( $stylesheet->getSourcePath() => '/wp-less/' );
+		$upload_dir = wp_upload_dir(); 
+		$to_cache = array( $stylesheet->getSourcePath() => '' );
         Less_Cache::$cache_dir = $upload_dir['basedir'].'/wp-less/';
         $cache_name = Less_Cache::Get( $to_cache );
         
